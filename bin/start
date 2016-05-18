@@ -2,6 +2,11 @@
 
 set -e
 
+
+
+# NOTE: The canonical source for this file is in the metabase/metabase repository.
+# Please update it there then copy to the metabase/metabase-deploy repository.
+
 # Translate various Heroku environment variables to Metabase equivalents
 
 if [ "$PORT" ]; then
@@ -10,7 +15,14 @@ fi
 
 # Heroku Postgres
 if [ "$DATABASE_URL" ]; then
-    export MB_DB_CONNECTION_URI="$DATABASE_URL"
+    if [ -z ${DATABASE_OPTIONS+x} ]; then
+        if [[ $DATABASE_URL == postgres* ]]; then
+            DATABASE_OPTIONS="?ssl=true&sslmode=require&sslfactory=org.postgresql.ssl.NonValidatingFactory"}
+        else
+            DATABASE_OPTIONS=""
+        fi
+    fi
+    export MB_DB_CONNECTION_URI="$DATABASE_URL$DATABASE_OPTIONS"
 fi
 
 # Mailgun (Heroku)
@@ -73,5 +85,4 @@ if [ ! -z "$RDS_HOSTNAME" ]; then
     export MB_DB_PORT=$RDS_PORT
 fi
 
-
-exec java $JAVA_OPTS -jar ./target/uberjar/metabase.jar
+exec java -Dfile.encoding=UTF-8 $JAVA_OPTS -jar ./target/uberjar/metabase.jar
