@@ -95,4 +95,4 @@ if [ ! -z "$JAVA_TIMEZONE" ]; then
 fi
 
 
-exec java -Dfile.encoding=UTF-8 $JAVA_OPTS -jar /app/metabase.jar
+exec java -Dfile.encoding=UTF-8 $JAVA_OPTS -jar ./metabase.jar

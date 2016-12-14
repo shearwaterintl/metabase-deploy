@@ -10,7 +10,7 @@ fi
 
 TAG="$1"
 
-JAR_PATH="target/uberjar/metabase.jar"
+JAR_PATH="/metabase.jar"
 mkdir -p "$(dirname "$JAR_PATH")"
 if [ "$#" -gt 1 ]; then
   cp "$2" "$JAR_PATH"
