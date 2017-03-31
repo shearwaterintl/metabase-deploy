@@ -82,4 +82,11 @@ if [ ! -z "$RDS_HOSTNAME" ]; then
     export MB_DB_PORT=$RDS_PORT
 fi
 
+limit=$(ulimit -u)
+case $limit in
+256)   # Free, Hobby, or 1X Dyno
+  JAVA_OPTS="-Xmx256m -Xss512k $JAVA_OPTS"
+  ;;
+esac
+
 exec java -Dfile.encoding=UTF-8 $JAVA_OPTS -jar ./target/uberjar/metabase.jar
