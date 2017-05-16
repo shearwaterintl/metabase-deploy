@@ -8,7 +8,7 @@
 
 *tl;dr Click this button to deploy Metabase to Heroku for free.*
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/metabase/metabase-deploy/tree/v0.23.1)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 For more details, check out the [Heroku-specific deploy documentation](http://www.metabase.com/docs/latest/operations-guide/running-metabase-on-heroku.html) for help with:
 * Upgrading beyond Heroku's free plan
